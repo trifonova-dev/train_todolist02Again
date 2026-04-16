@@ -1,18 +1,18 @@
-import {FilterType, Task} from './App'
+import {FilterValueType, Task} from './App'
 import {Button} from './Button'
 
 type Props = {
     title: string
     tasks: Task[]
-    deleteTask: (taskId: number) => void
-    changeFilterTasks: (filter: FilterType) => void
+    deleteTask: (taskID: number) => void
+    changeFilter: (filter: FilterValueType) => void
 }
 
 export const TodolistItem = ({
                                  title,
                                  tasks,
                                  deleteTask,
-                                 changeFilterTasks,
+                                 changeFilter
                              }: Props) => {
     return (
         <div>
@@ -31,9 +31,8 @@ export const TodolistItem = ({
                                 <input type="checkbox" checked={task.isDone}/>
                                 <span>{task.title}</span>
                                 <Button
-                                    title={"X"}
                                     onClick={() => deleteTask(task.id)}
-                                >x</Button>
+                                    title={"X"}/>
                             </li>
                         )
                     })}
@@ -41,14 +40,17 @@ export const TodolistItem = ({
             )}
             <div>
                 <Button
-                    onClick={() => changeFilterTasks("All")}
-                    title={'All'}/>
+                    title={'All'}
+                    onClick={()=>changeFilter("All")}
+                />
                 <Button
-                    onClick={() => changeFilterTasks("Active")}
-                    title={'Active'}/>
+                    title={'Active'}
+                    onClick={()=>changeFilter("Active")}
+                />
                 <Button
-                    onClick={() => changeFilterTasks("Completed")}
-                    title={'Completed'}/>
+                    title={'Completed'}
+                    onClick={()=>changeFilter("Completed")}
+                />
             </div>
         </div>
     )
