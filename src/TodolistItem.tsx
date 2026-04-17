@@ -4,7 +4,7 @@ import {Button} from './Button'
 type Props = {
     title: string
     tasks: Task[]
-    deleteTask: (taskID: number) => void
+    deleteTask: (taskId: Task["id"]) => void
     changeFilter: (filter: FilterValueType) => void
 }
 
@@ -12,7 +12,7 @@ export const TodolistItem = ({
                                  title,
                                  tasks,
                                  deleteTask,
-                                 changeFilter
+                                 changeFilter,
                              }: Props) => {
     return (
         <div>
@@ -31,8 +31,8 @@ export const TodolistItem = ({
                                 <input type="checkbox" checked={task.isDone}/>
                                 <span>{task.title}</span>
                                 <Button
-                                    onClick={() => deleteTask(task.id)}
-                                    title={"X"}/>
+                                    title={"X"}
+                                    onClick={() => deleteTask(task.id)}/>
                             </li>
                         )
                     })}
@@ -41,16 +41,14 @@ export const TodolistItem = ({
             <div>
                 <Button
                     title={'All'}
-                    onClick={()=>changeFilter("All")}
+                    onClick={() => changeFilter("All")}
                 />
                 <Button
                     title={'Active'}
-                    onClick={()=>changeFilter("Active")}
-                />
+                    onClick={() => changeFilter("Active")}/>
                 <Button
                     title={'Completed'}
-                    onClick={()=>changeFilter("Completed")}
-                />
+                    onClick={() => changeFilter("Completed")}/>
             </div>
         </div>
     )
