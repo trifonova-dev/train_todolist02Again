@@ -22,16 +22,14 @@ export const App = () => {
     ])
 
     const deleteTask = (taskId: Task["id"]) => {
-        const nextState: Task[] = tasks.filter(t => t.id !== taskId)
+        const nextState = tasks.filter(t => t.id !== taskId)
         setTasks(nextState)
     }
 
     const [filter, setFilter] = useState<FilterValueType>("All")
-
-    const changeFilter = (filter: FilterValueType) => {
-        setFilter(filter)
-    }
     const filteredTasks = getFilteredTasks(tasks, filter)
+
+    const changeFilter = (filter: FilterValueType) => setFilter(filter)
 
     return (
         <div className="app">
@@ -39,7 +37,8 @@ export const App = () => {
                 title="What to learn"
                 tasks={filteredTasks}
                 deleteTask={deleteTask}
-                changeFilter={changeFilter}/>
+                changeFilter={changeFilter}
+            />
         </div>
     )
 }

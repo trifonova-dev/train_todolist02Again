@@ -5,15 +5,10 @@ type Props = {
     title: string
     tasks: Task[]
     deleteTask: (taskId: Task["id"]) => void
-    changeFilter: (filter: FilterValueType) => void
+    changeFilter:(filter: FilterValueType) =>void
 }
 
-export const TodolistItem = ({
-                                 title,
-                                 tasks,
-                                 deleteTask,
-                                 changeFilter
-                             }: Props) => {
+export const TodolistItem = ({title, tasks, deleteTask,changeFilter}: Props) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -31,7 +26,7 @@ export const TodolistItem = ({
                                 <input type="checkbox" checked={task.isDone}/>
                                 <span>{task.title}</span>
                                 <Button
-                                    title={"XXX"}
+                                    title={"XYZ"}
                                     onClick={() => deleteTask(task.id)}/>
                             </li>
                         )
@@ -40,17 +35,14 @@ export const TodolistItem = ({
             )}
             <div>
                 <Button
-                    title={'All'}
                     onClick={()=>changeFilter("All")}
-                />
+                    title={'All'}/>
                 <Button
-                    title={'Active'}
                     onClick={()=>changeFilter("Active")}
-                />
+                    title={'Active'}/>
                 <Button
-                    title={'Completed'}
                     onClick={()=>changeFilter("Completed")}
-                />
+                    title={'Completed'}/>
             </div>
         </div>
     )
