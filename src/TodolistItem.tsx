@@ -4,11 +4,11 @@ import {Button} from './Button'
 type Props = {
     title: string
     tasks: Task[]
-    deleteTask: (taskId: Task["id"]) => void
-    changeFilter:(filter: FilterValueType) =>void
+    deleteTasks: (taskId: Task["id"]) => void
+    changeFilter: (filter: FilterValueType) => void
 }
 
-export const TodolistItem = ({title, tasks, deleteTask,changeFilter}: Props) => {
+export const TodolistItem = ({title, tasks, deleteTasks,changeFilter}: Props) => {
     return (
         <div>
             <h3>{title}</h3>
@@ -26,8 +26,8 @@ export const TodolistItem = ({title, tasks, deleteTask,changeFilter}: Props) => 
                                 <input type="checkbox" checked={task.isDone}/>
                                 <span>{task.title}</span>
                                 <Button
-                                    title={"XYZ"}
-                                    onClick={() => deleteTask(task.id)}/>
+                                    title={"deleteTasks"}
+                                    onClick={() => deleteTasks(task.id)}/>
                             </li>
                         )
                     })}
