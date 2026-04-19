@@ -9,7 +9,7 @@ export type Task = {
     isDone: boolean
 }
 
-export type FilterValueType = "All" | "Completed" | "Active"
+export type FilterValueType = "All" | "Active" | "Completed"
 
 export const App = () => {
     const [tasks, setTasks] = useState<Task[]>([
@@ -20,13 +20,16 @@ export const App = () => {
         {id: 5, title: 'Typescript', isDone: false},
         {id: 6, title: 'RTK query', isDone: false},
     ])
-    const deleteTasks = (taskId: Task["id"]) => {
-        const nextState = tasks.filter(t => t.id !== taskId)
-        setTasks(nextState)
+
+    const deleteTask = (taskId: Task['id']) => {
+        const nextstate = tasks.filter(t => t.id !== taskId)
+        setTasks(nextstate)
     }
 
     const [filter, setFilter] = useState<FilterValueType>("All")
-    const filteredTasks = getFilteredTasks(tasks, filter)
+
+    const filteredTasks = getFilteredTasks(tasks,filter)
+
     const changeFilter = (filter:FilterValueType)=>{
         setFilter(filter)
     }
@@ -36,7 +39,7 @@ export const App = () => {
             <TodolistItem
                 title="What to learn"
                 tasks={filteredTasks}
-                deleteTasks={deleteTasks}
+                deleteTask={deleteTask}
                 changeFilter={changeFilter}
             />
         </div>

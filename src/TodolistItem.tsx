@@ -4,17 +4,17 @@ import {Button} from './Button'
 type Props = {
     title: string
     tasks: Task[]
-    deleteTasks:(taskId: Task["id"]) =>void
-    changeFilter:(filter:FilterValueType)=>void
+    deleteTask: (taskId: Task['id']) => void
+    changeFilter: (filter: FilterValueType) => void
 }
 
-export const TodolistItem = ({title, tasks,deleteTasks, changeFilter}: Props) => {
+export const TodolistItem = ({title, tasks, deleteTask, changeFilter}: Props) => {
     return (
         <div>
             <h3>{title}</h3>
             <div>
                 <input/>
-                <Button title={'+'} />
+                <Button title={'+'}/>
             </div>
             {tasks.length === 0 ? (
                 <p>Тасок нет</p>
@@ -23,10 +23,12 @@ export const TodolistItem = ({title, tasks,deleteTasks, changeFilter}: Props) =>
                     {tasks.map(task => {
                         return (
                             <li key={task.id}>
-                                <input type="checkbox" checked={task.isDone} />
+                                <input type="checkbox" checked={task.isDone}/>
                                 <span>{task.title}</span>
-                                <Button title={"удалить таску"}
-                                        onClick={()=>deleteTasks(task.id)}/>
+                                <Button
+                                    title={"DELETE"}
+                                    onClick={() => deleteTask(task.id)}
+                                />
                             </li>
                         )
                     })}
@@ -35,13 +37,13 @@ export const TodolistItem = ({title, tasks,deleteTasks, changeFilter}: Props) =>
             <div>
                 <Button
                     onClick={()=>changeFilter("All")}
-                    title={'All'} />
+                    title={'All'}/>
                 <Button
                     onClick={()=>changeFilter("Active")}
-                    title={'Active'} />
+                    title={'Active'}/>
                 <Button
                     onClick={()=>changeFilter("Completed")}
-                    title={'Completed'} />
+                    title={'Completed'}/>
             </div>
         </div>
     )
