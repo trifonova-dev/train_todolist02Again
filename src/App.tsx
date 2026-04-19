@@ -21,16 +21,16 @@ export const App = () => {
         {id: 6, title: 'RTK query', isDone: false},
     ])
 
-    const deleteTask = (taskId: Task['id']) => {
+    const deleteTask = (taskId: Task["id"]) => {
         const nextstate = tasks.filter(t => t.id !== taskId)
         setTasks(nextstate)
     }
 
-    const [filter, setFilter] = useState<FilterValueType>("All")
+    const [filter, setFilter] = useState<FilterValueType>("Active")
 
-    const filteredTasks = getFilteredTasks(tasks,filter)
+    const filteredTasks = getFilteredTasks(tasks, filter)
 
-    const changeFilter = (filter:FilterValueType)=>{
+    const changeFilter = (filter:FilterValueType) => {
         setFilter(filter)
     }
 
